@@ -4,6 +4,13 @@ var board = {
     element: $('#post-section'),
     showPost: function(post) {
         this.element.append(post.element).append(post.buttonsElement);
+    },
+}
+var pagination = {
+    element: $('#pagination'),
+    showPagination: function() {
+        var paginationButtons = new PaginationButtons();
+        this.element.append(paginationButtons.element);
     }
 }
 
@@ -12,8 +19,10 @@ $.ajax({
     method: 'GET',
     success: function(response) {
         setPost(response);
+        pagination.showPagination();
     }
 });
+
 
 function setPost(reply) {
     reply.forEach(function(singlePost) {
